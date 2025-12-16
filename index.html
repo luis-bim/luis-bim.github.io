@@ -5,52 +5,180 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Portfólio Luis BIM</title>
+    <title>Portfólio Luis BIM | Arquiteto & Manager</title>
     <style>
-        /* Estilos Básicos */
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            text-align: center; 
-            margin: 0; 
-            padding: 40px 20px; /* Espaço nas laterais para não colar na borda do celular */
-            background: #f0f0f0; 
-            color: #333;
-        }
-        
-        h1 { color: #007ACC; margin-bottom: 10px; }
-        
-        /* Estilo da Imagem (Responsiva) */
-        .profile-pic {
-            width: 150px;
-            max-width: 100%; /* Garante que não estoure em telas minúsculas */
-            height: auto;
-            border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            display: block;
-            margin: 0 auto 20px auto;
+        /* === VARIÁVEIS DE COR (Fácil de mudar se quiser depois) === */
+        :root {
+            --bg-body: #1a1a1a;       /* Cinza muito escuro (quase preto) */
+            --bg-card: #252525;       /* Cinza do cartão */
+            --accent: #FFC107;        /* O Amarelo "Arquitetura/Obra" */
+            --text-main: #ffffff;     /* Branco */
+            --text-muted: #b0b0b0;    /* Cinza claro para textos secundários */
         }
 
-        hr {
-            border: 0;
-            height: 1px;
-            background: #ccc;
-            margin: 30px auto;
-            max-width: 300px; /* Linha não fica gigante em monitores */
+        /* === ESTILOS GERAIS === */
+        body { 
+            font-family: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif; 
+            margin: 0; 
+            padding: 40px 20px; 
+            background-color: var(--bg-body); 
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Container centralizado */
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        /* Link padrão */
+        a { color: var(--accent); text-decoration: none; transition: 0.3s; }
+        a:hover { color: #fff; text-decoration: underline; }
+
+        /* === CABEÇALHO === */
+        header { text-align: center; margin-bottom: 60px; }
+        
+        /* Foto de Perfil */
+        .profile-pic {
+            width: 160px;
+            height: 160px;
+            object-fit: cover; /* Garante que a foto não estique */
+            border-radius: 50%;
+            border: 3px solid var(--accent); /* Borda amarela na foto */
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.2); /* Brilho suave amarelo */
+            margin-bottom: 20px;
+        }
+
+        h1 { 
+            font-size: 2.5rem; 
+            margin: 0 0 10px 0; 
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        /* O Subtítulo com o Cargo */
+        .role {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px; /* Espaçamento chique */
+            margin-bottom: 10px;
+        }
+
+        .contact-info { font-size: 0.9rem; color: var(--text-muted); }
+
+        /* Divisória */
+        hr { border: 0; border-top: 1px solid #444; margin: 40px 0; }
+        
+        .section-title {
+            border-left: 5px solid var(--accent);
+            padding-left: 15px;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            color: var(--text-main);
+        }
+
+        /* === GRID DA GALERIA === */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* O Cartão */
+        .card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent); /* Borda fica amarela ao passar o mouse */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Player de Vídeo */
+        video { width: 100%; display: block; background: #000; }
+
+        /* Conteúdo do Cartão */
+        .card-info { padding: 20px; }
+        .card-info h3 { margin: 0 0 10px 0; font-size: 1.1rem; color: #fff; }
+        .card-info p { margin: 0 0 15px 0; font-size: 0.9rem; color: var(--text-muted); }
+
+        /* Etiquetas (Tags) */
+        .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .tag { 
+            background: var(--accent); 
+            color: #000; /* Texto preto no amarelo para contraste */
+            padding: 4px 10px; 
+            border-radius: 4px; 
+            font-size: 0.75rem; 
+            font-weight: 700;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-    <img src="assets/img/profile03.png" alt="Foto de Luis Eduardo" class="profile-pic">
+    <div class="container">
+        <header>
+            <img src="assets/img/profile03.png" alt="Luis Eduardo" class="profile-pic">
+            
+            <h1>Luis Eduardo</h1>
+            <p class="role">BIM Manager | Arquiteto</p>
+            
+            <div class="contact-info">
+                <p>
+                    <a href="https://github.com/Luis-BIM" target="_blank">github.com/Luis-BIM</a> • 
+                    <a href="https://linkedin.com/in/luiseduardomaia" target="_blank">LinkedIn</a>
+                </p>
+            </div>
+        </header>
 
-    <h1>Olá, Mundo!</h1>
-    
-    <p style="font-size: 1.1rem;">Este é o início do portfólio de <strong>Luis Eduardo</strong>.</p>
-    <p style="color: #666;">BIM Manager | Arquitetor</p>
-    
-    <hr>
-    
-    <p><em>Em breve: Automações e Plugins.</em></p>
+        <h2 class="section-title">Portfólio de Automação & Desenvolvimento</h2>
+
+        <div class="video-grid">
+
+            <div class="card">
+                <video controls preload="metadata">
+                    <source src="assets/video/revestimentos.mp4" type="video/mp4">
+                </video>
+                <div class="card-info">
+                    <h3>Automação de Acabamentos</h3>
+                    <p>Script Python na API do Revit que modela pisos e paredes automaticamente por ambiente.</p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Revit API</span>
+                        <span class="tag">Produtividade</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <video controls preload="metadata">
+                    <source src="assets/video/outro-plugin.mp4" type="video/mp4">
+                </video>
+                <div class="card-info">
+                    <h3>Gerenciador de Vistas</h3>
+                    <p>Interface WPF para padronização e renomeação em massa conforme o BEP.</p>
+                    <div class="tags">
+                        <span class="tag">C#</span>
+                        <span class="tag">WPF</span>
+                        <span class="tag">UI/UX</span>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+
+        <hr>
+
+        <footer style="text-align: center; color: var(--text-muted); font-size: 0.8rem;">
+            <p>&copy; 2025 Luis Eduardo. Todos os direitos reservados.</p>
+        </footer>
+    </div>
 
 </body>
 </html>
