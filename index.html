@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio Luis BIM | Arquiteto & Manager</title>
+    <title>Luís Eduardo | Arquiteto & Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         /* === VARIÁVEIS === */
         :root {
             --bg-body: #1a1a1a;
             --bg-card: #252525;
             --accent: #FFC107;        /* Amarelo Ouro */
+            --whatsapp: #25D366;      /* Verde WhatsApp */
             --text-main: #ffffff;
             --text-muted: #b0b0b0;
         }
 
         /* === CONFIGURAÇÕES GERAIS === */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body { 
             font-family: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif; 
@@ -41,7 +42,6 @@
             width: 160px;
             height: 160px;
             object-fit: cover;
-            /* MUDANÇA AQUI: De 50% para 12px (Quadrado com canto leve) */
             border-radius: 12px; 
             border: 3px solid var(--accent);
             box-shadow: 0 0 20px rgba(255, 193, 7, 0.2);
@@ -56,17 +56,53 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 10px;
+            margin-bottom: 25px;
         }
 
-        .contact-info { font-size: 0.9rem; color: var(--text-muted); }
+        /* === BOTÕES DE AÇÃO (Currículo, LinkedIn, WhatsApp) === */
+        .action-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
 
-        /* === BOTÕES DE NAVEGAÇÃO === */
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            
+            /* Estilo Padrão Uniforme (Cinza/Transparente) */
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.1);
+            /* A cor do texto muda conforme o botão específico abaixo */
+        }
+
+        /* Cores específicas APENAS no HOVER (ao passar o mouse) */
+        .btn-cv:hover { border-color: var(--accent); color: var(--accent); }
+        .btn-linkedin:hover { border-color: #0077b5; color: #0077b5; }
+        .btn-whatsapp:hover { border-color: var(--whatsapp); color: var(--whatsapp); }
+
+        /* === MENU DE NAVEGAÇÃO INTERNA === */
         .nav-menu {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 30px;
+            margin-top: 40px;
             flex-wrap: wrap;
         }
 
@@ -91,10 +127,7 @@
         }
 
         /* === SEÇÕES === */
-        section {
-            padding-top: 60px;
-            margin-bottom: 60px;
-        }
+        section { padding-top: 60px; margin-bottom: 60px; }
         
         .section-title {
             border-left: 5px solid var(--accent);
@@ -133,7 +166,6 @@
         .card-info h3 { margin: 0 0 10px 0; font-size: 1.1rem; color: #fff; }
         .card-info p { margin: 0 0 15px 0; font-size: 0.9rem; color: var(--text-muted); }
 
-        /* Tags */
         .tags { display: flex; gap: 8px; flex-wrap: wrap; }
         .tag { 
             background: var(--accent); 
@@ -152,15 +184,24 @@
 
     <div class="container">
         <header>
-            <img src="assets/img/profile03.png" alt="Luis Eduardo" class="profile-pic">
-            <h1>Luis Eduardo</h1>
+            <img src="assets/img/profile03.png" alt="Luís Eduardo" class="profile-pic">
+            <h1>Luís Eduardo</h1>
             <p class="role">BIM Manager | Arquiteto</p>
             
-            <div class="contact-info">
-                <p>
-                    <a href="https://github.com/Luis-BIM" target="_blank">github.com/Luis-BIM</a> • 
-                    <a href="https://linkedin.com/in/luiseduardomaia" target="_blank">LinkedIn</a>
-                </p>
+            <div class="action-links">
+                
+                <a href="assets/doc/Luís Eduardo - Currículo.pdf" download class="btn-action btn-cv">
+                    <i class="fas fa-file-download"></i> Baixar Currículo
+                </a>
+                
+                <a href="https://linkedin.com/in/luiseduardomaia" target="_blank" class="btn-action btn-linkedin">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+
+                <a href="https://wa.me/5531995627195?text=Ol%C3%A1!%20Vim%20pelo%20seu%20portf%C3%B3lio." target="_blank" class="btn-action btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Contato
+                </a>
+
             </div>
 
             <nav class="nav-menu">
@@ -265,7 +306,7 @@
 
         <hr>
         <footer style="text-align: center; color: var(--text-muted); font-size: 0.8rem;">
-            <p>&copy; 2025 Luis Eduardo. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Luís Eduardo. Todos os direitos reservados.</p>
         </footer>
     </div>
 </body>
