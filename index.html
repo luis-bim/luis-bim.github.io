@@ -79,7 +79,6 @@
             text-decoration: none;
             transition: transform 0.2s, box-shadow 0.2s;
             
-            /* Estilo Padrão Uniforme (Cinza/Transparente) */
             border: 1px solid rgba(255,255,255,0.1);
             background: rgba(255,255,255,0.05);
             color: var(--text-main);
@@ -91,7 +90,7 @@
             background: rgba(255,255,255,0.1);
         }
 
-        /* Cores específicas APENAS no HOVER (ao passar o mouse) */
+        /* Cores específicas APENAS no HOVER */
         .btn-cv:hover { border-color: var(--accent); color: var(--accent); }
         .btn-linkedin:hover { border-color: #0077b5; color: #0077b5; }
         .btn-whatsapp:hover { border-color: var(--whatsapp); color: var(--whatsapp); }
@@ -123,6 +122,22 @@
             color: #1a1a1a;
             box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
             transform: translateY(-2px);
+        }
+
+        /* === RESPONSIVIDADE (O PULO DO GATO PARA MOBILE) === */
+        /* Quando a tela for menor que 600px (celulares), isso acontece: */
+        @media (max-width: 600px) {
+            .action-links, .nav-menu {
+                display: flex;
+                flex-direction: column; /* Empilha um em cima do outro */
+                gap: 10px; /* Espaço menor entre eles */
+                padding: 0 20px; /* Margem nas laterais para não colar na borda */
+            }
+
+            .btn-action, .nav-btn {
+                width: 100%; /* Botão ocupa a largura toda */
+                justify-content: center; /* Texto centralizado */
+            }
         }
 
         /* === SEÇÕES === */
@@ -205,7 +220,7 @@
 
             <nav class="nav-menu">
                 <a href="#projetos" class="nav-btn">Projetos</a>
-                <a href="#ferramentas" class="nav-btn">Ferramentas Autorais</a>
+                <a href="#ferramentas" class="nav-btn">Plug-ins</a>
                 <a href="#gestao" class="nav-btn">Gestão BIM</a>
             </nav>
         </header>
@@ -242,7 +257,7 @@
         </section>
 
         <section id="ferramentas">
-            <h2 class="section-title">Ferramentas Autorais</h2>
+            <h2 class="section-title">Plug-ins & Automação</h2>
             <div class="grid">
                 <div class="card">
                     <video controls preload="metadata">
