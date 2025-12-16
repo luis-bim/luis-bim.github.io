@@ -59,7 +59,7 @@
             margin-bottom: 25px;
         }
 
-        /* === BOTÕES DE AÇÃO (Currículo, LinkedIn, WhatsApp) === */
+        /* === AÇÕES E NAVEGAÇÃO === */
         .action-links {
             display: flex;
             justify-content: center;
@@ -71,7 +71,7 @@
         .btn-action {
             display: inline-flex;
             align-items: center;
-            justify-content: center; /* Garante texto centralizado */
+            justify-content: center;
             gap: 8px;
             padding: 10px 20px;
             border-radius: 50px;
@@ -83,6 +83,7 @@
             background: rgba(255,255,255,0.05);
             color: var(--text-main);
             cursor: pointer;
+            user-select: none; /* Evita selecionar texto ao clicar rápido */
         }
 
         .btn-action:hover {
@@ -94,7 +95,6 @@
         .btn-linkedin:hover { border-color: #0077b5; color: #0077b5; }
         .btn-whatsapp:hover { border-color: var(--whatsapp); color: var(--whatsapp); }
 
-        /* === MENU DE NAVEGAÇÃO === */
         .nav-menu {
             display: flex;
             justify-content: center;
@@ -124,42 +124,36 @@
             transform: translateY(-2px);
         }
 
-        /* === MOBILE (A MÁGICA ACONTECE AQUI) === */
+        /* === MOBILE === */
         @media (max-width: 600px) {
-            /* 1. Reduz espaços verticais para o conteúdo subir */
             .container { padding-top: 20px; }
             .profile-pic { width: 130px; height: 130px; margin-bottom: 15px; }
             h1 { font-size: 2rem; margin-bottom: 5px; }
             .role { font-size: 1rem; margin-bottom: 20px; }
 
-            /* 2. Grid para Botões de Ação (Layout 2 colunas) */
             .action-links {
                 display: grid;
-                grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+                grid-template-columns: 1fr 1fr;
                 gap: 10px;
                 margin-bottom: 20px;
             }
-            /* Currículo ocupa largura total (2 colunas) */
             .btn-cv { grid-column: span 2; } 
             
-            /* 3. Navegação em Linha Única Compacta */
             .nav-menu {
                 display: flex;
-                flex-wrap: nowrap; /* Impede quebra de linha */
+                flex-wrap: nowrap;
                 gap: 8px;
                 margin-top: 20px;
             }
             .nav-btn {
-                padding: 8px 5px; /* Menos preenchimento lateral */
-                font-size: 0.75rem; /* Fonte menor para caber */
-                flex: 1; /* Todos com largura igual */
-                white-space: nowrap; /* Texto não quebra */
+                padding: 8px 5px;
+                font-size: 0.75rem;
+                flex: 1;
+                white-space: nowrap;
             }
         }
 
-        /* === SEÇÕES === */
-        section { padding-top: 60px; margin-bottom: 60px; }
-        
+        /* === ESTILOS DO PROJETO E GALERIA === */
         .section-title {
             border-left: 5px solid var(--accent);
             padding-left: 15px;
@@ -169,35 +163,82 @@
             text-transform: uppercase;
         }
 
-        /* === GRID E CARTÕES === */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
         .card {
             background: var(--bg-card);
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid #333;
-            transition: transform 0.3s, border-color 0.3s;
+            margin-bottom: 30px;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        .card-cover {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 1px solid #444;
         }
 
-        video, img.card-img { width: 100%; display: block; background: #000; object-fit: cover; }
-        img.card-img { height: 200px; }
+        .card-info { padding: 25px; }
+        .card-info h3 { margin: 0 0 15px 0; font-size: 1.4rem; color: #fff; }
+        
+        .project-desc { 
+            margin: 0 0 20px 0; 
+            font-size: 0.95rem; 
+            color: var(--text-muted); 
+            text-align: justify;
+        }
 
-        .card-info { padding: 20px; }
-        .card-info h3 { margin: 0 0 10px 0; font-size: 1.1rem; color: #fff; }
-        .card-info p { margin: 0 0 15px 0; font-size: 0.9rem; color: var(--text-muted); }
+        /* GALERIA HORIZONTAL COM CLICK-AND-DRAG */
+        .gallery-container {
+            margin-top: 20px;
+        }
+        
+        .gallery-title {
+            font-size: 0.9rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
 
-        .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .gallery-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            /* Cursor muda para indicar que pode arrastar */
+            cursor: grab; 
+            /* Remove seleção de imagem ao arrastar no PC */
+            user-select: none; 
+            -webkit-user-drag: none;
+        }
+        
+        /* Classe ativa quando estiver arrastando (via JS) */
+        .gallery-scroll.active {
+            cursor: grabbing;
+            cursor: -webkit-grabbing;
+        }
+        
+        /* Scrollbar estilizada */
+        .gallery-scroll::-webkit-scrollbar { height: 8px; }
+        .gallery-scroll::-webkit-scrollbar-track { background: #333; border-radius: 4px; }
+        .gallery-scroll::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+        .gallery-item {
+            height: 250px;
+            border-radius: 4px;
+            border: 1px solid #444;
+            transition: transform 0.2s;
+            /* Impede o navegador de tentar arrastar a imagem como arquivo */
+            pointer-events: none; 
+        }
+        
+        .gallery-scroll.active .gallery-item {
+            transform: scale(1); /* Remove efeito de zoom enquanto arrasta para não travar */
+        }
+
+        .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
         .tag { 
             background: var(--accent); 
             color: #000; 
@@ -207,6 +248,14 @@
             font-weight: 700;
             text-transform: uppercase;
         }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card-video video, .card-grid-img { width: 100%; display: block; background: #000; object-fit: cover; height: 200px; }
 
         hr { border: 0; border-top: 1px solid #333; margin: 50px 0; }
     </style>
@@ -244,27 +293,40 @@
 
         <section id="projetos">
             <h2 class="section-title">Projetos</h2>
-            <div class="grid">
-                <div class="card">
-                    <img src="assets/img/projeto-exemplo.jpg" alt="Projeto Exemplo" class="card-img">
-                    <div class="card-info">
-                        <h3>Residencial Alto Padrão</h3>
-                        <p>Modelagem LOD 350 e compatibilização.</p>
-                        <div class="tags">
-                            <span class="tag">Revit</span>
-                            <span class="tag">Navisworks</span>
-                        </div>
-                    </div>
-                </div>
+            
+            <div class="card">
+                <img src="assets/img/prjt-id-isom.png" alt="Isométrica Casa Condomínio" class="card-cover">
                 
-                <div class="card">
-                    <img src="assets/img/projeto-exemplo-2.jpg" alt="Projeto Exemplo" class="card-img">
-                    <div class="card-info">
-                        <h3>Complexo Comercial</h3>
-                        <p>Coordenação BIM e quantitativos.</p>
-                        <div class="tags">
-                            <span class="tag">BIM Collab</span>
-                            <span class="tag">Coordenação</span>
+                <div class="card-info">
+                    <h3>Residência em Condomínio - 121m²</h3>
+                    
+                    <div class="tags">
+                        <span class="tag">Revit Avançado</span>
+                        <span class="tag">BIM 5D</span>
+                        <span class="tag">Compatibilização</span>
+                        <span class="tag">Detalhamento</span>
+                    </div>
+
+                    <p class="project-desc">
+                        Edificação projetada para uma família de 3 pessoas em condomínio fechado de alto padrão. Atuei de forma integral em toda elaboração, compatibilização com complementares e acompanhamento da execução.
+                    </p>
+                    <p class="project-desc">
+                        <strong>Metodologia BIM:</strong> Todo o projeto foi desenvolvido utilizando modelagem em Revit para extração de quantitativos precisos e compatibilização interdisciplinar na etapa executiva, garantindo orçamentação assertiva e executabilidade.
+                    </p>
+                    <p class="project-desc">
+                        <strong>Inovação:</strong> Este serviu como projeto piloto para a empresa. Nenhum texto solto foi utilizado nos desenhos técnicos; todas as anotações são tags paramétricas vinculadas ao modelo. Isso gerou maior agilidade e reduziu drasticamente as revisões.
+                    </p>
+
+                    <div class="gallery-container">
+                        <span class="gallery-title"><i class="fas fa-hand-pointer"></i> Detalhamento (Arraste para o lado)</span>
+                        <div class="gallery-scroll drag-scroll">
+                            <img src="assets/img/prjt-id-prancha%20(1).png" alt="Prancha 1" class="gallery-item">
+                            <img src="assets/img/prjt-id-prancha%20(2).png" alt="Prancha 2" class="gallery-item">
+                            <img src="assets/img/prjt-id-prancha%20(3).png" alt="Prancha 3" class="gallery-item">
+                            <img src="assets/img/prjt-id-prancha%20(4).png" alt="Prancha 4" class="gallery-item">
+                            <img src="assets/img/prjt-id-prancha%20(5).png" alt="Prancha 5" class="gallery-item">
+                            <img src="assets/img/prjt-id-prancha%20(6).png" alt="Prancha 6" class="gallery-item">
+                            <img src="assets/img/prjt-id-prancha%20(7).png" alt="Prancha 7" class="gallery-item">
                         </div>
                     </div>
                 </div>
@@ -274,7 +336,7 @@
         <section id="ferramentas">
             <h2 class="section-title">Plug-ins & Automação</h2>
             <div class="grid">
-                <div class="card">
+                <div class="card card-video">
                     <video controls preload="metadata">
                         <source src="assets/video/revestimentos.mp4" type="video/mp4">
                     </video>
@@ -288,7 +350,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card card-video">
                     <video controls preload="metadata">
                         <source src="assets/video/outro-plugin.mp4" type="video/mp4">
                     </video>
@@ -308,7 +370,7 @@
             <h2 class="section-title">Gestão BIM & Dados</h2>
             <div class="grid">
                 <div class="card">
-                    <img src="assets/img/dashboard-bi.jpg" alt="Dashboard" class="card-img">
+                    <img src="assets/img/dashboard-bi.jpg" alt="Dashboard" class="card-grid-img">
                     <div class="card-info">
                         <h3>Dashboard de Auditoria</h3>
                         <p>Painel PowerBI para saúde dos dados.</p>
@@ -320,7 +382,7 @@
                 </div>
 
                 <div class="card">
-                    <img src="assets/img/bep-image.jpg" alt="BEP" class="card-img">
+                    <img src="assets/img/bep-image.jpg" alt="BEP" class="card-grid-img">
                     <div class="card-info">
                         <h3>Implementação e BEP</h3>
                         <p>Desenvolvimento de manuais e padrões.</p>
@@ -338,5 +400,39 @@
             <p>&copy; 2025 Luís Eduardo. Todos os direitos reservados.</p>
         </footer>
     </div>
+
+    <script>
+        const sliders = document.querySelectorAll('.drag-scroll');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        sliders.forEach(slider => {
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.classList.add('active');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                slider.classList.remove('active');
+            });
+
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.classList.remove('active');
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2; // Ajuste a velocidade do scroll aqui
+                slider.scrollLeft = scrollLeft - walk;
+            });
+        });
+    </script>
 </body>
 </html>
