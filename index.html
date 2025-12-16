@@ -2,20 +2,55 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Portfólio Luis BIM</title>
     <style>
-        body { font-family: sans-serif; text-align: center; margin-top: 50px; background: #f0f0f0; }
-        h1 { color: #007ACC; }
+        /* Estilos Básicos */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            margin: 0; 
+            padding: 40px 20px; /* Espaço nas laterais para não colar na borda do celular */
+            background: #f0f0f0; 
+            color: #333;
+        }
+        
+        h1 { color: #007ACC; margin-bottom: 10px; }
+        
+        /* Estilo da Imagem (Responsiva) */
+        .profile-pic {
+            width: 150px;
+            max-width: 100%; /* Garante que não estoure em telas minúsculas */
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 30px auto;
+            max-width: 300px; /* Linha não fica gigante em monitores */
+        }
     </style>
 </head>
 <body>
-    
-    <img src="assets/img/profile03.png" alt="Foto de Luis Eduardo" width="150" style="border-radius: 50%; box-shadow: 0 4px 8px rgba(0,0,0,0.2); display: block; margin: 0 auto 20px auto;">
+
+    <img src="assets/img/profile03.png" alt="Foto de Luis Eduardo" class="profile-pic">
 
     <h1>Olá, Mundo!</h1>
-    <p>Este é o início do portfólio de Luis Eduardo.</p>
-    <p>BIM Manager | Arquiteto</p>
+    
+    <p style="font-size: 1.1rem;">Este é o início do portfólio de <strong>Luis Eduardo</strong>.</p>
+    <p style="color: #666;">BIM Manager | Developer</p>
+    
     <hr>
+    
     <p><em>Em breve: Automações e Plugins.</em></p>
+
 </body>
 </html>
