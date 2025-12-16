@@ -11,19 +11,18 @@
         :root {
             --bg-body: #1a1a1a;
             --bg-card: #252525;
-            --accent: #FFC107;        /* Amarelo Ouro */
-            --whatsapp: #25D366;      /* Verde WhatsApp */
+            --accent: #FFC107;
+            --whatsapp: #25D366;
             --text-main: #ffffff;
             --text-muted: #b0b0b0;
         }
 
-        /* === CONFIGURAÇÕES GERAIS === */
+        /* === GERAL === */
         html { scroll-behavior: smooth; }
 
         body { 
             font-family: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif; 
-            margin: 0; 
-            padding: 0; 
+            margin: 0; padding: 0; 
             background-color: var(--bg-body); 
             color: var(--text-main);
             line-height: 1.6;
@@ -46,6 +45,7 @@
             border: 3px solid var(--accent);
             box-shadow: 0 0 20px rgba(255, 193, 7, 0.2);
             margin-bottom: 20px;
+            transition: 0.3s;
         }
 
         h1 { font-size: 2.5rem; margin: 0 0 10px 0; font-weight: 700; letter-spacing: -1px; }
@@ -71,6 +71,7 @@
         .btn-action {
             display: inline-flex;
             align-items: center;
+            justify-content: center; /* Garante texto centralizado */
             gap: 8px;
             padding: 10px 20px;
             border-radius: 50px;
@@ -78,7 +79,6 @@
             font-weight: 600;
             text-decoration: none;
             transition: transform 0.2s, box-shadow 0.2s;
-            
             border: 1px solid rgba(255,255,255,0.1);
             background: rgba(255,255,255,0.05);
             color: var(--text-main);
@@ -90,12 +90,11 @@
             background: rgba(255,255,255,0.1);
         }
 
-        /* Cores específicas APENAS no HOVER */
         .btn-cv:hover { border-color: var(--accent); color: var(--accent); }
         .btn-linkedin:hover { border-color: #0077b5; color: #0077b5; }
         .btn-whatsapp:hover { border-color: var(--whatsapp); color: var(--whatsapp); }
 
-        /* === MENU DE NAVEGAÇÃO INTERNA === */
+        /* === MENU DE NAVEGAÇÃO === */
         .nav-menu {
             display: flex;
             justify-content: center;
@@ -115,6 +114,7 @@
             border-radius: 4px;
             transition: all 0.3s;
             font-size: 0.9rem;
+            text-align: center;
         }
 
         .nav-btn:hover {
@@ -124,19 +124,36 @@
             transform: translateY(-2px);
         }
 
-        /* === RESPONSIVIDADE (O PULO DO GATO PARA MOBILE) === */
-        /* Quando a tela for menor que 600px (celulares), isso acontece: */
+        /* === MOBILE (A MÁGICA ACONTECE AQUI) === */
         @media (max-width: 600px) {
-            .action-links, .nav-menu {
-                display: flex;
-                flex-direction: column; /* Empilha um em cima do outro */
-                gap: 10px; /* Espaço menor entre eles */
-                padding: 0 20px; /* Margem nas laterais para não colar na borda */
-            }
+            /* 1. Reduz espaços verticais para o conteúdo subir */
+            .container { padding-top: 20px; }
+            .profile-pic { width: 130px; height: 130px; margin-bottom: 15px; }
+            h1 { font-size: 2rem; margin-bottom: 5px; }
+            .role { font-size: 1rem; margin-bottom: 20px; }
 
-            .btn-action, .nav-btn {
-                width: 100%; /* Botão ocupa a largura toda */
-                justify-content: center; /* Texto centralizado */
+            /* 2. Grid para Botões de Ação (Layout 2 colunas) */
+            .action-links {
+                display: grid;
+                grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            /* Currículo ocupa largura total (2 colunas) */
+            .btn-cv { grid-column: span 2; } 
+            
+            /* 3. Navegação em Linha Única Compacta */
+            .nav-menu {
+                display: flex;
+                flex-wrap: nowrap; /* Impede quebra de linha */
+                gap: 8px;
+                margin-top: 20px;
+            }
+            .nav-btn {
+                padding: 8px 5px; /* Menos preenchimento lateral */
+                font-size: 0.75rem; /* Fonte menor para caber */
+                flex: 1; /* Todos com largura igual */
+                white-space: nowrap; /* Texto não quebra */
             }
         }
 
@@ -203,7 +220,6 @@
             <p class="role">BIM Manager | Arquiteto</p>
             
             <div class="action-links">
-                
                 <a href="assets/doc/curriculo.pdf" download="Luís Eduardo - Currículo.pdf" class="btn-action btn-cv">
                     <i class="fas fa-file-download"></i> Baixar Currículo
                 </a>
@@ -215,7 +231,6 @@
                 <a href="https://wa.me/5531995627195?text=Ol%C3%A1!%20Vim%20pelo%20seu%20portf%C3%B3lio." target="_blank" class="btn-action btn-whatsapp">
                     <i class="fab fa-whatsapp"></i> Contato
                 </a>
-
             </div>
 
             <nav class="nav-menu">
