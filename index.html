@@ -85,44 +85,40 @@
         .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
         .tag { background: var(--accent); color: #000; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 
-        /* === NOVO GRID DE PRANCHAS (Mosaico) === */
+        /* === GRID TÉCNICO === */
         .gallery-title { font-size: 0.9rem; color: var(--accent); text-transform: uppercase; font-weight: bold; margin-bottom: 15px; display: block; margin-top: 20px; }
         
         .technical-grid {
             display: grid;
-            /* Responsivo: cria colunas automáticas de no mínimo 150px */
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
             gap: 10px;
         }
 
         .tech-img-wrapper {
             position: relative;
-            height: 140px; /* Altura fixa das miniaturas */
+            height: 140px;
             overflow: hidden;
             border-radius: 4px;
             border: 1px solid #444;
-            cursor: zoom-in; /* Ícone de lupa */
+            cursor: zoom-in;
             transition: 0.2s;
         }
 
         .tech-img-wrapper:hover { border-color: var(--accent); opacity: 0.9; }
         
-        .tech-img {
-            width: 100%; height: 100%; object-fit: cover; object-position: top; /* Foca no topo da prancha */
-        }
+        .tech-img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
         
-        /* Ícone de ampliar sobre a imagem */
         .tech-img-wrapper::after {
-            content: '\f00e'; /* FontAwesome Zoom Icon */
+            content: '\f00e';
             font-family: "Font Awesome 6 Free"; font-weight: 900;
             position: absolute; bottom: 5px; right: 5px;
             color: white; background: rgba(0,0,0,0.6);
             padding: 3px 6px; border-radius: 4px; font-size: 0.8rem;
         }
 
-        /* === LIGHTBOX (ZOOM TELA CHEIA) === */
+        /* === LIGHTBOX (ZOOM TELA CHEIA) - ATUALIZADO === */
         .lightbox {
-            display: none; /* Escondido por padrão */
+            display: none;
             position: fixed; z-index: 9999;
             top: 0; left: 0; width: 100%; height: 100%;
             background-color: var(--lightbox-bg);
@@ -134,17 +130,38 @@
         .lightbox.active { display: flex; animation: fadeIn 0.3s; }
 
         .lightbox-content {
-            max-width: 95%; max-height: 95%;
+            max-width: 95%; max-height: 90%; /* Deixa espaço para o botão em cima */
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
             border: 2px solid var(--accent);
             border-radius: 4px;
-            object-fit: contain; /* Garante que a imagem inteira apareça */
+            object-fit: contain;
         }
 
+        /* BOTÃO DE FECHAR SUPER VISÍVEL */
         .lightbox-close {
-            position: absolute; top: 20px; right: 20px;
-            color: white; font-size: 2rem; cursor: pointer;
-            background: none; border: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10000; /* Garante que fique acima da imagem */
+            
+            /* Visual de Botão Redondo */
+            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro */
+            color: white;
+            border: 2px solid white; /* Borda branca para contraste */
+            border-radius: 50%;
+            
+            width: 50px; height: 50px;
+            font-size: 1.5rem;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background-color: var(--accent);
+            color: black;
+            border-color: var(--accent);
+            transform: scale(1.1);
         }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -158,7 +175,7 @@
 <body>
 
     <div id="lightbox" class="lightbox">
-        <button class="lightbox-close">&times;</button>
+        <button class="lightbox-close" title="Fechar">&times;</button>
         <img src="" alt="Zoom" class="lightbox-content" id="lightbox-img">
     </div>
 
@@ -306,27 +323,24 @@
         function openLightbox(imageSrc) {
             lightboxImg.src = imageSrc;
             lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Trava a rolagem da página de fundo
+            document.body.style.overflow = 'hidden';
         }
 
         // Função para fechar
         function closeLightbox() {
             lightbox.classList.remove('active');
-            lightboxImg.src = '';
-            document.body.style.overflow = 'auto'; // Destrava a rolagem
+            setTimeout(() => { lightboxImg.src = ''; }, 300); // Limpa src após animação
+            document.body.style.overflow = 'auto';
         }
 
-        // Eventos de clique
         closeBtn.addEventListener('click', closeLightbox);
         
-        // Fechar ao clicar fora da imagem
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
                 closeLightbox();
             }
         });
 
-        // Fechar com a tecla ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeLightbox();
         });
