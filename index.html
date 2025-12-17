@@ -85,7 +85,7 @@
         .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
         .tag { background: var(--accent); color: #000; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 
-        /* === GRID TÉCNICO === */
+        /* === GRID DE PRANCHAS (MOSAICO) === */
         .gallery-title { font-size: 0.9rem; color: var(--accent); text-transform: uppercase; font-weight: bold; margin-bottom: 15px; display: block; margin-top: 20px; }
         
         .technical-grid {
@@ -116,7 +116,7 @@
             padding: 3px 6px; border-radius: 4px; font-size: 0.8rem;
         }
 
-        /* === LIGHTBOX (ZOOM TELA CHEIA) - ATUALIZADO === */
+        /* === LIGHTBOX (ZOOM TELA CHEIA) === */
         .lightbox {
             display: none;
             position: fixed; z-index: 9999;
@@ -130,7 +130,7 @@
         .lightbox.active { display: flex; animation: fadeIn 0.3s; }
 
         .lightbox-content {
-            max-width: 95%; max-height: 90%; /* Deixa espaço para o botão em cima */
+            max-width: 95%; max-height: 90%;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
             border: 2px solid var(--accent);
             border-radius: 4px;
@@ -142,14 +142,11 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            z-index: 10000; /* Garante que fique acima da imagem */
-            
-            /* Visual de Botão Redondo */
-            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro */
+            z-index: 10000;
+            background-color: rgba(0, 0, 0, 0.8);
             color: white;
-            border: 2px solid white; /* Borda branca para contraste */
+            border: 2px solid white;
             border-radius: 50%;
-            
             width: 50px; height: 50px;
             font-size: 1.5rem;
             display: flex; align-items: center; justify-content: center;
@@ -319,30 +316,55 @@
         const lightboxImg = document.getElementById('lightbox-img');
         const closeBtn = document.querySelector('.lightbox-close');
 
-        // Função para abrir
+        // Função: Abrir Lightbox e adicionar estado no histórico
         function openLightbox(imageSrc) {
             lightboxImg.src = imageSrc;
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            // Adiciona um estado "fake" no histórico.
+            // O '#zoom' é apenas um identificador, não precisa existir no HTML.
+            history.pushState({lightboxOpen: true}, "", "#zoom");
         }
 
-        // Função para fechar
-        function closeLightbox() {
+        // Função: Fechar UI do Lightbox (apenas visual)
+        function closeLightboxUI() {
             lightbox.classList.remove('active');
-            setTimeout(() => { lightboxImg.src = ''; }, 300); // Limpa src após animação
+            setTimeout(() => { lightboxImg.src = ''; }, 300);
             document.body.style.overflow = 'auto';
         }
 
-        closeBtn.addEventListener('click', closeLightbox);
-        
+        // Evento: Ocorre quando o usuário clica em VOLTAR no navegador
+        window.addEventListener('popstate', (event) => {
+            // Se o lightbox estiver aberto, fecha visualmente
+            if (lightbox.classList.contains('active')) {
+                closeLightboxUI();
+            }
+        });
+
+        // Função para acionar o fechamento (Botão X ou clique fora)
+        function triggerClose() {
+            // Se tivermos o hash #zoom, usamos o history.back()
+            // Isso aciona o evento 'popstate' acima, que fecha a UI.
+            if (window.location.hash === "#zoom") {
+                history.back();
+            } else {
+                // Caso de segurança (se abriu sem hash por algum motivo)
+                closeLightboxUI();
+            }
+        }
+
+        // Vínculos de eventos
+        closeBtn.addEventListener('click', triggerClose);
+
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
-                closeLightbox();
+                triggerClose();
             }
         });
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'Escape') triggerClose();
         });
     </script>
 </body>
