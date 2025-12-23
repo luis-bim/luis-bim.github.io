@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luís Eduardo | Arquiteto & Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     
     <style>
-        /* === VARIÁVEIS GERAIS === */
+        /* === VARIÁVEIS === */
         :root {
             --bg-body: #1a1a1a;
             --bg-card: #252525;
-            --accent: #FFC107;        /* Amarelo Ouro */
-            --whatsapp: #25D366;      /* Verde WhatsApp */
+            --accent: #FFC107;
+            --whatsapp: #25D366;
             --text-main: #ffffff;
             --text-muted: #b0b0b0;
-            --lightbox-bg: rgba(0, 0, 0, 0.95); /* Fundo escuro do zoom */
+            --lightbox-bg: rgba(0, 0, 0, 0.95);
         }
 
-        /* === CONFIGURAÇÕES GERAIS === */
+        /* === GERAL === */
         html { scroll-behavior: smooth; }
         body { 
             font-family: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif; 
@@ -33,7 +33,7 @@
         a { color: var(--accent); text-decoration: none; transition: 0.3s; }
         a:hover { color: #fff; }
 
-        /* === CABEÇALHO === */
+        /* === HEADER === */
         header { text-align: center; margin-bottom: 40px; }
         .profile-pic {
             width: 160px; height: 160px; object-fit: cover;
@@ -44,7 +44,7 @@
         h1 { font-size: 2.5rem; margin: 0 0 10px 0; font-weight: 700; letter-spacing: -1px; }
         .role { font-size: 1.2rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
 
-        /* === AÇÕES & NAVEGAÇÃO === */
+        /* === AÇÕES & NAV === */
         .action-links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
         .btn-action {
             display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -66,7 +66,7 @@
         }
         .nav-btn:hover { background: var(--accent); color: #1a1a1a; transform: translateY(-2px); }
 
-        /* === LAYOUT RESPONSIVO (CELULAR) === */
+        /* === MOBILE LAYOUT === */
         @media (max-width: 600px) {
             .container { padding-top: 20px; }
             .profile-pic { width: 130px; height: 130px; }
@@ -76,17 +76,18 @@
             .nav-btn { padding: 8px 5px; font-size: 0.75rem; flex: 1; white-space: nowrap; text-align: center; }
         }
 
-        /* === SEÇÕES E PROJETOS === */
+        /* === PROJETOS === */
         .section-title { border-left: 5px solid var(--accent); padding-left: 15px; margin-bottom: 30px; font-size: 1.8rem; text-transform: uppercase; }
         .card { background: var(--bg-card); border-radius: 8px; overflow: hidden; border: 1px solid #333; margin-bottom: 30px; }
         .card-cover { width: 100%; height: 300px; object-fit: cover; border-bottom: 1px solid #444; }
         .card-info { padding: 25px; }
         .card-info h3 { margin: 0 0 15px 0; font-size: 1.4rem; color: #fff; }
         .project-desc { margin: 0 0 20px 0; font-size: 0.95rem; color: var(--text-muted); text-align: justify; }
-        
+
         .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 15px; }
         .tag { background: var(--accent); color: #000; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 
+        /* === GRID DE PRANCHAS (MOSAICO) === */
         /* === ESTILOS PARA O VIEWER 3D === */
         model-viewer {
             width: 100%;
@@ -95,33 +96,31 @@
             border-bottom: 1px solid #444;
         }
 
-        /* === GRID DE PRANCHAS TÉCNICAS (MOSAICO) === */
+        /* === GRID TÉCNICO === */
         .gallery-title { font-size: 0.9rem; color: var(--accent); text-transform: uppercase; font-weight: bold; margin-bottom: 15px; display: block; margin-top: 20px; }
-        
+
         .technical-grid {
             display: grid;
-            /* Cria colunas automáticas de no mínimo 140px */
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
             gap: 10px;
         }
 
         .tech-img-wrapper {
             position: relative;
-            height: 140px; /* Altura fixa das miniaturas */
+            height: 140px;
             overflow: hidden;
             border-radius: 4px;
             border: 1px solid #444;
-            cursor: zoom-in; /* Cursor de lupa */
+            cursor: zoom-in;
             transition: 0.2s;
         }
 
         .tech-img-wrapper:hover { border-color: var(--accent); opacity: 0.9; }
-        
+
         .tech-img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-        
-        /* Ícone de zoom sobre a miniatura */
+
         .tech-img-wrapper::after {
-            content: '\f00e'; /* Ícone FontAwesome */
+            content: '\f00e';
             font-family: "Font Awesome 6 Free"; font-weight: 900;
             position: absolute; bottom: 5px; right: 5px;
             color: white; background: rgba(0,0,0,0.6);
@@ -130,7 +129,7 @@
 
         /* === LIGHTBOX (ZOOM TELA CHEIA) === */
         .lightbox {
-            display: none; /* Escondido por padrão */
+            display: none;
             position: fixed; z-index: 9999;
             top: 0; left: 0; width: 100%; height: 100%;
             background-color: var(--lightbox-bg);
@@ -146,27 +145,35 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
             border: 2px solid var(--accent);
             border-radius: 4px;
-            object-fit: contain; /* Garante que a imagem inteira apareça */
+            object-fit: contain;
         }
 
-        /* Botão X para fechar */
         .lightbox-close {
-            position: absolute; top: 20px; right: 20px; z-index: 10000;
-            background-color: rgba(0, 0, 0, 0.8); color: white;
-            border: 2px solid white; border-radius: 50%;
-            width: 50px; height: 50px; font-size: 1.5rem;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 50px; height: 50px;
+            font-size: 1.5rem;
             display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: 0.3s;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
         .lightbox-close:hover {
-            background-color: var(--accent); color: black;
-            border-color: var(--accent); transform: scale(1.1);
+            background-color: var(--accent);
+            color: black;
+            border-color: var(--accent);
+            transform: scale(1.1);
         }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* === OUTROS GRIDS (Geral) === */
+        /* === OUTROS GRIDS === */
         .grid-general { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .card-video video, .card-grid-img { width: 100%; display: block; background: #000; object-fit: cover; height: 200px; }
         hr { border: 0; border-top: 1px solid #333; margin: 50px 0; }
@@ -184,7 +191,7 @@
             <img src="assets/img/profile03.png" alt="Luís Eduardo" class="profile-pic">
             <h1>Luís Eduardo</h1>
             <p class="role">BIM Manager | Arquiteto</p>
-            
+
             <div class="action-links">
                 <a href="assets/doc/curriculo.pdf" download="Luís Eduardo - Currículo.pdf" class="btn-action btn-cv">
                     <i class="fas fa-file-download"></i> Baixar Currículo
@@ -208,37 +215,74 @@
 
         <section id="projetos">
             <h2 class="section-title">Projetos</h2>
-            
+
             <div class="card">
                 <img src="assets/img/prjt-id-render.png" alt="Render Casa Condomínio" class="card-cover">
                 
                 <div class="card-info">
                     <h3>Residência em Condomínio - 121m²</h3>
+                    
                     <div class="tags">
                         <span class="tag">Revit Avançado</span>
                         <span class="tag">BIM 5D</span>
                         <span class="tag">Compatibilização</span>
+                        <span class="tag">Detalhamento</span>
                     </div>
+
                     <p class="project-desc">
-                        Edificação projetada para uma família de 3 pessoas em condomínio fechado de alto padrão. Atuei de forma integral em toda elaboração e compatibilização.
+                        Edificação projetada para uma família de 3 pessoas em condomínio fechado de alto padrão. Atuei de forma integral em toda elaboração, compatibilização com complementares e acompanhamento da execução.
                     </p>
+                    <p class="project-desc">
+                        <strong>Metodologia BIM:</strong> Todo o projeto foi desenvolvido utilizando modelagem em Revit para extração de quantitativos precisos e compatibilização interdisciplinar na etapa executiva.
+                    </p>
+                    <p class="project-desc">
+                        <strong>Inovação:</strong> Este serviu como projeto piloto. Nenhum texto solto foi utilizado; todas as anotações são tags paramétricas vinculadas ao modelo, garantindo integridade da informação.
+                    </p>
+
                     <span class="gallery-title"><i class="fas fa-expand"></i> Pranchas Técnicas (Clique para ampliar)</span>
-                    
                     <div class="technical-grid">
-                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha%20(1).png')"><img src="assets/img/prjt-id-prancha%20(1).png" class="tech-img"></div>
-                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha%20(2).png')"><img src="assets/img/prjt-id-prancha%20(2).png" class="tech-img"></div>
-                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha%20(3).png')"><img src="assets/img/prjt-id-prancha%20(3).png" class="tech-img"></div>
-                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha%20(4).png')"><img src="assets/img/prjt-id-prancha%20(4).png" class="tech-img"></div>
-                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha%20(5).png')"><img src="assets/img/prjt-id-prancha%20(5).png" class="tech-img"></div>
-                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha%20(6).png')"><img src="assets/img/prjt-id-prancha%20(6).png" class="tech-img"></div>
-                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha%20(7).png')"><img src="assets/img/prjt-id-prancha%20(7).png" class="tech-img"></div>
-                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha%20(8).png')"><img src="assets/img/prjt-id-prancha%20(8).png" class="tech-img"></div>
-                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha%20(9).png')"><img src="assets/img/prjt-id-prancha%20(9).png" class="tech-img"></div>
-                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha%20(10).png')"><img src="assets/img/prjt-id-prancha%20(10).png" class="tech-img"></div>
-                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha%20(11).png')"><img src="assets/img/prjt-id-prancha%20(11).png" class="tech-img"></div>
-                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha%20(12).png')"><img src="assets/img/prjt-id-prancha%20(12).png" class="tech-img"></div>
-                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha%20(13).png')"><img src="assets/img/prjt-id-prancha%20(13).png" class="tech-img"></div>
-                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha%20(14).png')"><img src="assets/img/prjt-id-prancha%20(14).png" class="tech-img"></div>
+                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha-01.jpg')">
+                            <img src="assets/img/prjt-id-prancha-01.jpg" alt="Prancha 01" class="tech-img">
+                        </div>
+                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha-02.jpg')">
+                            <img src="assets/img/prjt-id-prancha-02.jpg" alt="Prancha 02" class="tech-img">
+                        </div>
+                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha-03.jpg')">
+                            <img src="assets/img/prjt-id-prancha-03.jpg" alt="Prancha 03" class="tech-img">
+                        </div>
+                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha-04.jpg')">
+                            <img src="assets/img/prjt-id-prancha-04.jpg" alt="Prancha 04" class="tech-img">
+                        </div>
+                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha-05.jpg')">
+                            <img src="assets/img/prjt-id-prancha-05.jpg" alt="Prancha 05" class="tech-img">
+                        </div>
+                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha-06.jpg')">
+                            <img src="assets/img/prjt-id-prancha-06.jpg" alt="Prancha 06" class="tech-img">
+                        </div>
+                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha-07.jpg')">
+                            <img src="assets/img/prjt-id-prancha-07.jpg" alt="Prancha 07" class="tech-img">
+                        </div>
+                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha-08.jpg')">
+                            <img src="assets/img/prjt-id-prancha-08.jpg" alt="Prancha 08" class="tech-img">
+                        </div>
+                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha-09.jpg')">
+                            <img src="assets/img/prjt-id-prancha-09.jpg" alt="Prancha 09" class="tech-img">
+                        </div>
+                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha-10.jpg')">
+                            <img src="assets/img/prjt-id-prancha-10.jpg" alt="Prancha 10" class="tech-img">
+                        </div>
+                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha-11.jpg')">
+                            <img src="assets/img/prjt-id-prancha-11.jpg" alt="Prancha 11" class="tech-img">
+                        </div>
+                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha-12.jpg')">
+                            <img src="assets/img/prjt-id-prancha-12.jpg" alt="Prancha 12" class="tech-img">
+                        </div>
+                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha-13.jpg')">
+                            <img src="assets/img/prjt-id-prancha-13.jpg" alt="Prancha 13" class="tech-img">
+                        </div>
+                        <div class="tech-img-wrapper" onclick="openLightbox('assets/img/prjt-id-prancha-14.jpg')">
+                            <img src="assets/img/prjt-id-prancha-14.jpg" alt="Prancha 14" class="tech-img">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -321,7 +365,7 @@
 
         <hr>
         <footer style="text-align: center; color: var(--text-muted); font-size: 0.8rem;">
-            <p>&copy; 2025 Luís Eduardo. Todos os direitos reservados.</p>
+            <p>&copy; 2026 Luís Eduardo. Todos os direitos reservados (eu acho, não sou advogado).</p>
         </footer>
     </div>
 
@@ -330,31 +374,32 @@
         const lightboxImg = document.getElementById('lightbox-img');
         const closeBtn = document.querySelector('.lightbox-close');
 
-        // Função para abrir o zoom e adicionar estado no histórico
+        // Função: Abrir Lightbox e adicionar estado no histórico
         function openLightbox(imageSrc) {
             lightboxImg.src = imageSrc;
             lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Trava a rolagem do fundo
-            history.pushState({lightboxOpen: true}, "", "#zoom"); // Permite usar o botão "Voltar" do celular
+            document.body.style.overflow = 'hidden';
+            
+            // Adiciona um estado "fake" no histórico.
+            history.pushState({lightboxOpen: true}, "", "#zoom");
         }
 
-        // Função para fechar a interface do zoom
+        // Função: Fechar UI do Lightbox (apenas visual)
         function closeLightboxUI() {
             lightbox.classList.remove('active');
-            setTimeout(() => { lightboxImg.src = ''; }, 300); // Limpa a imagem após a animação
-            document.body.style.overflow = 'auto'; // Destrava a rolagem
+            setTimeout(() => { lightboxImg.src = ''; }, 300);
+            document.body.style.overflow = 'auto';
         }
 
-        // Evento que detecta quando o usuário clica em "Voltar" no navegador
+        // Evento: Ocorre quando o usuário clica em VOLTAR no navegador
         window.addEventListener('popstate', (event) => {
             if (lightbox.classList.contains('active')) {
                 closeLightboxUI();
             }
         });
 
-        // Função central para acionar o fechamento
+        // Função para acionar o fechamento (Botão X ou clique fora)
         function triggerClose() {
-            // Se tiver o #zoom na URL, usa o histórico para voltar (é mais nativo no mobile)
             if (window.location.hash === "#zoom") {
                 history.back();
             } else {
@@ -362,13 +407,17 @@
             }
         }
 
-        // Gatilhos para fechar
+        // Vínculos de eventos
         closeBtn.addEventListener('click', triggerClose);
+
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) triggerClose(); // Fecha se clicar no fundo escuro
+            if (e.target === lightbox) {
+                triggerClose();
+            }
         });
+
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') triggerClose(); // Fecha com a tecla ESC
+            if (e.key === 'Escape') triggerClose();
         });
     </script>
 </body>
